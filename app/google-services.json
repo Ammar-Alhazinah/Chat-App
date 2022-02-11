@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "850635031260",
+    "project_id": "chat-app-4ca06",
+    "storage_bucket": "chat-app-4ca06.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850635031260:android:e06e38a573fdcadf22aa19",
+        "android_client_info": {
+          "package_name": "edu.cs.birzeit.a1172482.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850635031260-vhi6uaukid89q9cve9tf1bplkf2k5slm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHr-wZm5ndUZTIFYayJrJlYSrQSXC7B9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850635031260-vhi6uaukid89q9cve9tf1bplkf2k5slm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
