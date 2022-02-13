@@ -3,6 +3,7 @@ package edu.cs.birzeit.a1172482.chatapp;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -43,11 +44,15 @@ public class SetupActivity extends AppCompatActivity {
     StorageReference StorageRef;
 
     ProgressDialog mLoadingBar;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
+        toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Setup Profile");
 
 
         profileImageView = findViewById(R.id.profile_image);
