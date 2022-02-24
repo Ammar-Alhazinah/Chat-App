@@ -34,7 +34,7 @@
 
         <ImageView
             android:id="@+id/addImagePost"
-            android:layout_width="35dp"
+            android:layout_width="30dp"
             android:layout_height="35dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="6dp"
@@ -45,8 +45,8 @@
 
         <ImageView
             android:id="@+id/send_post_imgView"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/inputAddPost"
             app:layout_constraintEnd_toEndOf="@+id/inputAddPost"
