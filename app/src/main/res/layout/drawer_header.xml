@@ -13,11 +13,9 @@
         android:layout_height="120dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:background="@color/white"
         android:src="@drawable/profile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/username_header"
         android:layout_width="wrap_content"
