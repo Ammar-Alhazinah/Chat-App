@@ -21,10 +21,11 @@
             android:id="@+id/chat"
             android:icon="@drawable/ic_chat"
             android:title="Chat" />
+    </group>
+    <group android:id="@+id/second">
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_logout"
             android:title="Logout" />
-
     </group>
 </menu>
