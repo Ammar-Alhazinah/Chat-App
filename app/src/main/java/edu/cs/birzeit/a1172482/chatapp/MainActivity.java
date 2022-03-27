@@ -6,19 +6,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -40,6 +46,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import edu.cs.birzeit.a1172482.chatapp.Utills.Posts;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -64,6 +71,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ProgressDialog mLoadingBar;
 
     StorageReference postImageRef;
+    FirebaseRecyclerAdapter<Posts, MyViewHolder> adapter;
+    FirebaseRecyclerOptions<Posts> options;
+    RecyclerView recyclerView;
 
 
     @Override
@@ -81,6 +91,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         sendImagePost = findViewById(R.id.send_post_imgView);
         inputPostDesc = findViewById(R.id.inputAddPost);
         mLoadingBar = new ProgressDialog(this);
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -112,6 +124,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        LoadPost();
+
+    }
+
+    private void LoadPost() {
+        options = new FirebaseRecyclerOptions.Builder<Posts>().setQuery(postRef, Posts.class).build();
+        adapter = new FirebaseRecyclerAdapter<Posts, MyViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Posts model) {
+                holder.postDesc.setText(model.getPostDesc());
+                holder.timeAgo.setText(model.getDatePost());
+                holder.username.setText(model.getUsername());
+                Picasso.get().load(model.getPostImageUrl()).into(holder.postImage);
+                Picasso.get().load(model.getUserProfileImageUrl()).into(holder.profileImage);
+
+            }
+
+            @NonNull
+            @Override
+            public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_view_post,parent,false);
+                return new MyViewHolder(view);
+            }
+        };
+        adapter.startListening();
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
